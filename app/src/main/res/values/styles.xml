@@ -4,6 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/ActionBarCommute</item>
         <item name="android:actionBarStyle">@style/ActionBarCommute</item>
+        <item name="actionBarTabStyle">@style/MyActionBarTabs</item>
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>
+        <item name="android:actionBarTabBarStyle">@style/customTabBar</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -11,10 +14,38 @@
         <item name="android:background">@color/ambermain</item>
         <item name="background">@color/ambermain</item>
         <item name="android:textAppearance">@style/ActionBarMainText</item>
+
     </style>
 
     <style name="ActionBarMainText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textColor">@color/amberwhite</item>
+    </style>
+
+    <style name="MyActionBarTabs"
+    parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/action_tabs</item>
+        <item name="background">@drawable/action_tabs</item>
+        <item name="android:divider">@drawable/tab_divider</item>
+        <item name="android:showDividers">none</item>
+        <item name="divider">@drawable/tab_divider</item>
+        <item name="showDividers">none</item>
+    </style>
+
+
+    <style name="customTabBar" parent="Widget.AppCompat.ActionBar.TabBar">
+        <item name="android:showDividers">none</item>
+        <item name="android:background">@drawable/action_tabs</item>
+        <item name="background">@drawable/action_tabs</item>
+        <item name="android:divider">@drawable/tab_divider</item>
+        <item name="divider">@drawable/tab_divider</item>
+        <item name="showDividers">none</item>
+    </style>
+
+    <style name="TimeSlot">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

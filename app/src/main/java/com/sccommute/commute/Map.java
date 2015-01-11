@@ -1,13 +1,17 @@
 package com.sccommute.commute;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -27,6 +31,21 @@ public class Map extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        View listBtn =findViewById(R.id.listBtn);
+        listBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BusSchedViewer().show(getSupportFragmentManager(), "Schedules");
+            }
+        });
+        View commuteBtn =findViewById(R.id.commuteBtn);
+        commuteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Map.this, Schedule.class);
+                startActivity(intent);
+            }
+        });
         new UpdateMapFn().execute();
         setUpMapIfNeeded();
 
@@ -108,9 +127,11 @@ public class Map extends ActionBarActivity {
                         mark.remove();
                         markers.remove(mark);
                     }
+                    BitmapDescriptor icon
+                            = BitmapDescriptorFactory.fromResource(R.drawable.route20);
                     markers.put(objName, mMap.addMarker(new MarkerOptions().position(
                             new LatLng(obj.getDouble("lat"), obj.getDouble("lon")))
-                            .title(objName)));
+                            .title(objName).icon(icon)));
                 } catch(Exception e) {
                     e.printStackTrace();
                 }

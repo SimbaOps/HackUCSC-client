@@ -2,4 +2,8 @@
 <resources>
     <color name="ambermain">#FFC107</color>
     <color name="amberwhite">#FFF8E1</color>
+    <color name="amberdark">#FF6F00</color>
+    <color name="amberaccent">#FFD54F</color>
+    <color name="amberdarkaccent">#FFA000</color>
+    <color name="greenwhite">#C8E6C9</color>
 </resources>

@@ -10,8 +10,25 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
     <at.markushi.ui.CircleButton
+        android:id="@+id/commuteBtn"
         android:layout_width="64dip"
         android:layout_height="64dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_map"
+        android:layout_marginBottom="95dip"
+        app:cb_color="@color/ambermain"
+        app:cb_pressedRingWidth="8dip" />
+    <at.markushi.ui.CircleButton
+        android:id="@+id/listBtn"
+        android:layout_width="64dip"
+        android:layout_height="64dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="159dip"
+        android:src="@drawable/ic_list"
         app:cb_color="@color/ambermain"
         app:cb_pressedRingWidth="8dip" />
 </RelativeLayout>

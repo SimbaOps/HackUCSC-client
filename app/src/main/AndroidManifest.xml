@@ -34,6 +34,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Commute"
+            android:label="@string/title_activity_commute"
+            android:parentActivityName=".Map" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sccommute.commute.Map" />
+        </activity>
+        <activity
+            android:name=".Schedule"
+            android:label="@string/title_activity_schedule"
+            android:parentActivityName=".Map" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sccommute.commute.Map" />
+        </activity>
     </application>
 
 </manifest>
