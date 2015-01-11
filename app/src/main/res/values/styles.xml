@@ -2,7 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/ActionBarCommute</item>
+        <item name="android:actionBarStyle">@style/ActionBarCommute</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ActionBarCommute" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/ambermain</item>
+        <item name="background">@color/ambermain</item>
+        <item name="android:textAppearance">@style/ActionBarMainText</item>
+    </style>
+
+    <style name="ActionBarMainText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textColor">@color/amberwhite</item>
     </style>
 
 </resources>
