@@ -3,18 +3,25 @@ package com.sccommute.commute;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Map extends FragmentActivity {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+public class Map extends ActionBarActivity {
+
+    private static GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +73,21 @@ public class Map extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(36.9786339,-122.0440915), 13));
+        mMap.setMyLocationEnabled(true);
     }
 
-    private class UpdateMapFn extends AsyncTask<Void, Void, JSONArray> {
+    static class UpdateMapFn extends AsyncTask<Void, Void, JSONArray> {
+
+        static HashMap<String, Marker> markers = new HashMap<String, Marker>();
 
         @Override
         protected JSONArray doInBackground(Void... params) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 return new CloudController("http://ec2-54-67-127-40.us-west-1.compute.amazonaws.com")
                         .getLocations();
@@ -87,13 +102,20 @@ public class Map extends FragmentActivity {
             for(int i = 0; i < arr.length(); i++) {
                 try {
                     JSONObject obj = arr.getJSONObject(i);
-                    mMap.addMarker(new MarkerOptions().position(
+                    String objName = obj.getString("id");
+                    Marker mark = markers.get(objName);
+                    if(mark != null) {
+                        mark.remove();
+                        markers.remove(mark);
+                    }
+                    markers.put(objName, mMap.addMarker(new MarkerOptions().position(
                             new LatLng(obj.getDouble("lat"), obj.getDouble("lon")))
-                            .title(obj.getString("id")));
-                }catch(Exception e) {
+                            .title(objName)));
+                } catch(Exception e) {
                     e.printStackTrace();
                 }
             }
+            new UpdateMapFn().execute();
         }
 
     }
