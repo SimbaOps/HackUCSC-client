@@ -53,10 +53,23 @@ public class BusSchedViewer extends DialogFragment {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            String[] values = new String[]{"Android", "iPhone", "WindowsMobile",
-                    "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                    "Linux", "OS/2"};
-            setListAdapter(new ScheduleAdapter(getActivity(), new ArrayList<String>(Arrays.asList(values))));
+            ArrayList<BusSched> list = new ArrayList<BusSched>();
+            list.add(new BusSched("6:50am", "7:08am", "7:30am"));
+            list.add(new BusSched("7:50am", "8:08am", "8:30am"));
+            list.add(new BusSched("8:50am", "9:08am", "9:30am"));
+            list.add(new BusSched("9:50am", "10:08am", "10:35am"));
+            list.add(new BusSched("10:50am", "11:08am", "11:35am"));
+            list.add(new BusSched("11:50am", "12:08pm", "12:35pm"));
+            list.add(new BusSched("12:20pm", "12:38pm", "1:05pm"));
+            list.add(new BusSched("12:50pm", "1:08pm", "1:30pm"));
+            list.add(new BusSched("1:20pm", "1:38pm", "2:05pm"));
+            list.add(new BusSched("1:50pm", "2:08pm", "2:30pm"));
+            list.add(new BusSched("2:20pm", "2:38pm", "3:05pm"));
+            list.add(new BusSched("2:50pm", "3:08pm", "3:30pm"));
+            list.add(new BusSched("3:20pm", "3:38pm", "4:05pm"));
+            list.add(new BusSched("3:50pm", "4:08pm", "4:30pm"));
+            list.add(new BusSched("4:20pm", "4:38pm", "5:05pm"));
+            setListAdapter(new ScheduleAdapter(getActivity(), list));
         }
     }
 }

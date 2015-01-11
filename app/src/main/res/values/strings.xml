@@ -10,5 +10,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_schedule">Schedules</string>
+    <string name="confessions">Commute</string>
+    <string name="search">Search</string>
 
 </resources>
